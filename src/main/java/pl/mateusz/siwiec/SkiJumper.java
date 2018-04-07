@@ -15,8 +15,13 @@ public class SkiJumper {
         this.nation = nation;
         this.winsInCareerInWorldCup = winsInCareerInWorldCup;
         this.podiumsInCareerInWorldCup = podiumsInCareerInWorldCup;
+
+    }
+
+    public SkiJumper() {
         this.id = counter++;
     }
+
     public int getId(){
         return id;
     }

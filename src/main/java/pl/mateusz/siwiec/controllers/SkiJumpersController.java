@@ -22,18 +22,10 @@ public class SkiJumpersController {
     }
     @PutMapping("/skiJumpers/{id}")
     public void editSkiJumper(@RequestBody  SkiJumper skiJumper , @PathVariable int id){
-        SkiJumper existingSkiJumper = skiJumpersRepository.findById(id);
-        existingSkiJumper.setName(skiJumper.getName());
-        existingSkiJumper.setSurname(skiJumper.getSurname());
-        existingSkiJumper.setNation(skiJumper.getNation());
-        existingSkiJumper.setPodiumsInCareerInWorldCup(skiJumper.getPodiumsInCareerInWorldCup());
-        existingSkiJumper.setWinsInCareerInWorldCup(skiJumper.getWinsInCareerInWorldCup());
-        skiJumpersRepository.editJumper(existingSkiJumper);
+        skiJumpersRepository.editJumper(skiJumper , id);
     }
     @DeleteMapping("/skiJumpers/{id}")
-        public void deleteSkiJumper(@RequestBody  SkiJumper skiJumper , @PathVariable int id){
-        SkiJumper existingSkiJumper = skiJumpersRepository.findById(id);
-        skiJumpersRepository.deleteJumper(existingSkiJumper);
-
+        public void deleteSkiJumper(@PathVariable int id){
+        skiJumpersRepository.deleteJumper(id);
     }
 }
