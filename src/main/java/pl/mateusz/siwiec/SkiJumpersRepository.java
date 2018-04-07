@@ -2,26 +2,29 @@ package pl.mateusz.siwiec;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SkiJumpersRepository implements SkiJumpersRepo {
     List<SkiJumper> skiJumpers = new ArrayList<SkiJumper>();
+
     @Override
-    public void addJumper(SkiJumper jumpers) {
-       skiJumpers.add(jumpers);
+    public void addJumper(SkiJumper skiJumper) {
+        skiJumpers.add(skiJumper);
+        skiJumper.assignId();
     }
+
     @Override
     public void deleteJumper(int id) {
         skiJumpers.remove(id);
     }
+
     @Override
-    public void editJumper(SkiJumper jumpers , int id) {
+    public void editJumper(SkiJumper skiJumper, int id) {
         SkiJumper existingSkiJumper = findById(id);
-        existingSkiJumper.setName(jumpers.getName());
-        existingSkiJumper.setSurname(jumpers.getSurname());
-        existingSkiJumper.setNation(jumpers.getNation());
-        existingSkiJumper.setPodiumsInCareerInWorldCup(jumpers.getPodiumsInCareerInWorldCup());
-        existingSkiJumper.setWinsInCareerInWorldCup(jumpers.getWinsInCareerInWorldCup());
+        existingSkiJumper.setName(skiJumper.getName());
+        existingSkiJumper.setSurname(skiJumper.getSurname());
+        existingSkiJumper.setNation(skiJumper.getNation());
+        existingSkiJumper.setPodiumsInCareerInWorldCup(skiJumper.getPodiumsInCareerInWorldCup());
+        existingSkiJumper.setWinsInCareerInWorldCup(skiJumper.getWinsInCareerInWorldCup());
     }
 
     @Override
@@ -36,4 +39,15 @@ public class SkiJumpersRepository implements SkiJumpersRepo {
                 .findFirst()
                 .orElseThrow(RuntimeException::new);
     }
+
+    public boolean validateJumper(SkiJumper skiJumper) {
+        String regex = "^[a-zA-Z]+$";
+        return skiJumper.getWinsInCareerInWorldCup() > 0
+                && skiJumper.getPodiumsInCareerInWorldCup() > 0
+                && skiJumper.getName().matches(regex) && skiJumper.getName().length() > 1
+                && skiJumper.getNation().matches(regex) && skiJumper.getNation().length() > 1
+                && skiJumper.getSurname().matches(regex) && skiJumper.getSurname().length() > 1;
+    }
+
 }
+

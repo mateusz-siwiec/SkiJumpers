@@ -19,7 +19,9 @@ public class SkiJumper {
     }
 
     public SkiJumper() {
-        this.id = counter++;
+    }
+    public void assignId(){
+    this.id = counter++;
     }
 
     public int getId(){
