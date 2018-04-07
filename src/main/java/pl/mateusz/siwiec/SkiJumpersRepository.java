@@ -2,6 +2,7 @@ package pl.mateusz.siwiec;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SkiJumpersRepository implements SkiJumpersRepo {
     List<SkiJumper> skiJumpers = new ArrayList<SkiJumper>();
@@ -21,5 +22,13 @@ public class SkiJumpersRepository implements SkiJumpersRepo {
     @Override
     public List<SkiJumper> getSkiJumpers() {
         return null;
+    }
+
+    @Override
+    public SkiJumper findById(int id) {
+        return skiJumpers.stream()
+                .filter(skiJumper -> skiJumper.getId() == id)
+                .findFirst()
+                .orElseThrow(RuntimeException::new);
     }
 }
