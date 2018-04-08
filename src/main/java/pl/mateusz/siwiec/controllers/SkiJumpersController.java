@@ -1,24 +1,29 @@
 package pl.mateusz.siwiec.controllers;
 
-import org.springframework.context.annotation.ComponentScan;
+import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
+import pl.mateusz.siwiec.DbSkiJumpersRepository;
 import pl.mateusz.siwiec.SkiJumper;
-import pl.mateusz.siwiec.SkiJumpersRepository;
+import pl.mateusz.siwiec.InMemorySkiJumpersRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import pl.mateusz.siwiec.SkiJumpersRepository;
 
 @RestController
 public class SkiJumpersController {
 
-    SkiJumpersRepository skiJumpersRepository = new SkiJumpersRepository();
+    private SkiJumpersRepository skiJumpersRepository = new InMemorySkiJumpersRepository();
 
+    @Autowired
+    private DbSkiJumpersRepository dbSkiJumpersRepository;
+
+    @Transactional
     @GetMapping("/skiJumpers")
     public List<SkiJumper> getAllSkiJumpers(@RequestParam(value = "filter", required = false, defaultValue = "") String namePhrase) {
-
         return skiJumpersRepository.getSkiJumpers().stream()
                 .filter(skiJumper -> skiJumper.getName().startsWith(namePhrase))
                 .collect(Collectors.toList());
@@ -26,7 +31,7 @@ public class SkiJumpersController {
 
     @PostMapping("/skiJumpers")
     public ResponseEntity addSkiJumper(@RequestBody SkiJumper skiJumper) {
-        if (skiJumpersRepository.validateJumper(skiJumper)) {
+        if (validateJumper(skiJumper)) {
             skiJumpersRepository.addJumper(skiJumper);
             return new ResponseEntity(HttpStatus.OK);
         }
@@ -35,7 +40,7 @@ public class SkiJumpersController {
 
     @PutMapping("/skiJumpers/{id}")
     public ResponseEntity editSkiJumper(@RequestBody SkiJumper skiJumper, @PathVariable int id) {
-        if (skiJumpersRepository.validateJumper(skiJumper)) {
+        if (validateJumper(skiJumper)) {
             skiJumpersRepository.editJumper(skiJumper, id);
             return new ResponseEntity(HttpStatus.OK);
         }
@@ -46,4 +51,14 @@ public class SkiJumpersController {
     public void deleteSkiJumper(@PathVariable int id) {
         skiJumpersRepository.deleteJumper(id);
     }
+
+    public boolean validateJumper(SkiJumper skiJumper) {
+        String regex = "^[a-zA-Z]+$";
+        return skiJumper.getWinsInCareerInWorldCup() > 0
+            && skiJumper.getPodiumsInCareerInWorldCup() > 0
+            && skiJumper.getName().matches(regex) && skiJumper.getName().length() > 1
+            && skiJumper.getNation().matches(regex) && skiJumper.getNation().length() > 1
+            && skiJumper.getSurname().matches(regex) && skiJumper.getSurname().length() > 1;
+    }
+
 }

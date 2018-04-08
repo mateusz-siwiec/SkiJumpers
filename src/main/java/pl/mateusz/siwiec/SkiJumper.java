@@ -1,7 +1,16 @@
 package pl.mateusz.siwiec;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class SkiJumper {
+
     private static int counter = 0;
+
+    @Id
+    @GeneratedValue
     private int id;
     private String name;
     private String surname;
@@ -15,7 +24,6 @@ public class SkiJumper {
         this.nation = nation;
         this.winsInCareerInWorldCup = winsInCareerInWorldCup;
         this.podiumsInCareerInWorldCup = podiumsInCareerInWorldCup;
-
     }
 
     public SkiJumper() {
