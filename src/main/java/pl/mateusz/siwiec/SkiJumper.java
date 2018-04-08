@@ -14,11 +14,11 @@ public class SkiJumper {
     private int id;
     private String name;
     private String surname;
-    private String nation;
+    private Nations nation;
     private int winsInCareerInWorldCup;
     private int podiumsInCareerInWorldCup;
 
-    public SkiJumper(String name, String surname, String nation, int winsInCareerInWorldCup, int podiumsInCareerInWorldCup) {
+    public SkiJumper(String name, String surname, Nations nation, int winsInCareerInWorldCup, int podiumsInCareerInWorldCup) {
         this.name = name;
         this.surname = surname;
         this.nation = nation;
@@ -60,11 +60,11 @@ public class SkiJumper {
         this.surname = surname;
     }
 
-    public String getNation() {
+    public Nations getNation() {
         return nation;
     }
 
-    public void setNation(String nation) {
+    public void setNation(Nations nation) {
         this.nation = nation;
     }
 

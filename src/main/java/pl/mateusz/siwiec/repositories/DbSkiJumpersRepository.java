@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import pl.mateusz.siwiec.SkiJumper;
 
+/**
+ * This class is
+ */
 @Primary
 @Component
 public class DbSkiJumpersRepository implements SkiJumpersRepository {
