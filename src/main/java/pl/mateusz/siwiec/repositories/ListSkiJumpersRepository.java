@@ -2,6 +2,7 @@ package pl.mateusz.siwiec.repositories;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.stereotype.Component;
 import pl.mateusz.siwiec.SkiJumper;
 
@@ -10,7 +11,7 @@ public class ListSkiJumpersRepository implements SkiJumpersRepository {
     private List<SkiJumper> skiJumpers = new ArrayList<SkiJumper>();
 
     /**
-     *Adding ski jumper
+     * Adding ski jumper
      */
     @Override
     public void addJumper(SkiJumper skiJumper) {
@@ -23,8 +24,8 @@ public class ListSkiJumpersRepository implements SkiJumpersRepository {
      */
     @Override
     public void deleteJumper(int id) {
-      SkiJumper skiJumperToRemove = findById(id);
-      skiJumpers.remove(skiJumperToRemove);
+        SkiJumper skiJumperToRemove = findById(id);
+        skiJumpers.remove(skiJumperToRemove);
     }
 
     /**
@@ -41,7 +42,7 @@ public class ListSkiJumpersRepository implements SkiJumpersRepository {
     }
 
     /**
-     *Getting all ski jumpers
+     * Getting all ski jumpers
      */
     @Override
     public List<SkiJumper> getSkiJumpers() {
@@ -49,7 +50,7 @@ public class ListSkiJumpersRepository implements SkiJumpersRepository {
     }
 
     /**
-     *Getting ski jumper by id
+     * Getting ski jumper by id
      */
     @Override
     public SkiJumper findById(int id) {

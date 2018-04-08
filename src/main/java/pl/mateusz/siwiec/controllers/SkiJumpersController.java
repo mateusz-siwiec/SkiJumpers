@@ -1,6 +1,7 @@
 package pl.mateusz.siwiec.controllers;
 
 import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@ public class SkiJumpersController {
 
     /**
      * GET method to get all ski jumpers
+     *
      * @param namePhrase
      * @return
      */
@@ -38,6 +40,7 @@ public class SkiJumpersController {
 
     /**
      * POST method to add new ski jumper
+     *
      * @param skiJumper ski jumper to add
      * @return OK if ski jumper was added, BAD_REQUEST if provided ski jumper was invalid
      */
@@ -52,7 +55,7 @@ public class SkiJumpersController {
 
     /**
      * @param skiJumper ski jumper to edit
-     * @param id ski jumper id
+     * @param id        ski jumper id
      * @return OK when ski jumper was edited , BAD_REQUEST when ski jumper hasn't been edited
      */
     @PutMapping("/skiJumpers/{id}")
@@ -61,11 +64,12 @@ public class SkiJumpersController {
             skiJumpersRepository.editJumper(skiJumper, id);
             return new ResponseEntity(HttpStatus.OK);
         }
-        return new ResponseEntity("You can't edit jumper" ,HttpStatus.BAD_REQUEST);
+        return new ResponseEntity("You can't edit jumper", HttpStatus.BAD_REQUEST);
     }
 
     /**
      * DELETE method to delete ski jumper
+     *
      * @param id ski jumper id
      */
     @DeleteMapping("/skiJumpers/{id}")

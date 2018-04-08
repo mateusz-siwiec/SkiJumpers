@@ -9,7 +9,7 @@ public class SkiJumperValidator {
         return skiJumper.getWinsInCareerInWorldCup() > 0
                 && skiJumper.getPodiumsInCareerInWorldCup() > 0
                 && skiJumper.getName() != null && skiJumper.getName().matches(regex)
-                && skiJumper.getSurname()!=null && skiJumper.getSurname().matches(regex)
-                && skiJumper.getNation()!=null;
+                && skiJumper.getSurname() != null && skiJumper.getSurname().matches(regex)
+                && skiJumper.getNation() != null;
     }
 }

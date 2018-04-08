@@ -18,6 +18,15 @@ public class SkiJumper {
     private int winsInCareerInWorldCup;
     private int podiumsInCareerInWorldCup;
 
+    /**
+     * Ski Jumper constructor
+     *
+     * @param name                      Ski Jumper name
+     * @param surname                   Ski Jumper surname
+     * @param nation                    Ski Jumper nation
+     * @param winsInCareerInWorldCup    Ski Jumper wins in career in world cup
+     * @param podiumsInCareerInWorldCup Ski jumper podiums in career in world cup
+     */
     public SkiJumper(String name, String surname, Nations nation, int winsInCareerInWorldCup, int podiumsInCareerInWorldCup) {
         this.name = name;
         this.surname = surname;
@@ -28,11 +37,12 @@ public class SkiJumper {
 
     public SkiJumper() {
     }
-    public void assignId(){
-    this.id = counter++;
+
+    public void assignId() {
+        this.id = counter++;
     }
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
