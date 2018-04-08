@@ -7,7 +7,7 @@ import pl.mateusz.siwiec.SkiJumper;
 
 @Component
 public class ListSkiJumpersRepository implements SkiJumpersRepository {
-    List<SkiJumper> skiJumpers = new ArrayList<SkiJumper>();
+    private List<SkiJumper> skiJumpers = new ArrayList<SkiJumper>();
 
     @Override
     public void addJumper(SkiJumper skiJumper) {
@@ -17,7 +17,8 @@ public class ListSkiJumpersRepository implements SkiJumpersRepository {
 
     @Override
     public void deleteJumper(int id) {
-        skiJumpers.remove(id);
+      SkiJumper skiJumperToRemove = findById(id);
+      skiJumpers.remove(skiJumperToRemove);
     }
 
     @Override

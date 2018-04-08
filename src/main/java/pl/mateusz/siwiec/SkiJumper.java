@@ -7,7 +7,7 @@ import javax.persistence.Id;
 @Entity
 public class SkiJumper {
 
-    private static int counter = 0;
+    private static int counter = 1;
 
     @Id
     @GeneratedValue
