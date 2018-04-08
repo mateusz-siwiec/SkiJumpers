@@ -1,6 +1,7 @@
-package pl.mateusz.siwiec;
+package pl.mateusz.siwiec.repositories;
 
 import java.util.List;
+import pl.mateusz.siwiec.SkiJumper;
 
 public interface SkiJumpersRepository {
     void addJumper(SkiJumper jumper);

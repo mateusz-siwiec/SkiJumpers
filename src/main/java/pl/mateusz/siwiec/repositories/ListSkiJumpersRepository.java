@@ -1,9 +1,12 @@
-package pl.mateusz.siwiec;
+package pl.mateusz.siwiec.repositories;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Component;
+import pl.mateusz.siwiec.SkiJumper;
 
-public class InMemorySkiJumpersRepository implements SkiJumpersRepository {
+@Component
+public class ListSkiJumpersRepository implements SkiJumpersRepository {
     List<SkiJumper> skiJumpers = new ArrayList<SkiJumper>();
 
     @Override

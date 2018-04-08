@@ -83,4 +83,8 @@ public class SkiJumper {
     public void setPodiumsInCareerInWorldCup(int podiumsInCareerInWorldCup) {
         this.podiumsInCareerInWorldCup = podiumsInCareerInWorldCup;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

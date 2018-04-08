@@ -5,21 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.mateusz.siwiec.DbSkiJumpersRepository;
 import pl.mateusz.siwiec.SkiJumper;
-import pl.mateusz.siwiec.InMemorySkiJumpersRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import pl.mateusz.siwiec.SkiJumpersRepository;
+import pl.mateusz.siwiec.repositories.SkiJumpersRepository;
 
 @RestController
 public class SkiJumpersController {
 
-    private SkiJumpersRepository skiJumpersRepository = new InMemorySkiJumpersRepository();
-
     @Autowired
-    private DbSkiJumpersRepository dbSkiJumpersRepository;
+    private SkiJumpersRepository skiJumpersRepository;
 
     @Transactional
     @GetMapping("/skiJumpers")
